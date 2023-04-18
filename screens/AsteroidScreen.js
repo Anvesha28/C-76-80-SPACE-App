@@ -240,7 +240,12 @@ export default class AsteroidScreen extends Component {
         <View style={styles.container}>
           <SafeAreaView style={styles.droidSafeArea} />
           {/* `<FlatList>` is a component in React Native that renders a scrollable list of
-                    items. In this code, it is being used to display a list of meteors. */}
+               items. In this code, it is being used to display a list of meteors. 
+               data - For simplicity, data is a plain array. If you want to use something else, like an immutable list, use the underlying VirtualizedList directly.
+               keyExtractor - is used to provide a unique value (ID, email, etc.) to avoid the recreation of the list by tracking the reordering of the items.
+               renderItem - Takes an item from data and renders it into the list. Provides additional metadata like index if you need it, as well as a more generic separators.updateProps function which let you set whatever props you want to change the rendering of either the leading separator or trailing separator in case the more common highlight and unhighlight (which set the highlighted: boolean prop) are insufficient for your use case.
+               horizontal - this prop takes a boolean value to create a horizontal list by returning like horizontal={true}. If true, renders items next to each other horizontally instead of stacked vertically. 
+          */}
           <FlatList
             keyExtractor={this.keyExtractor}
             data={meteors}
